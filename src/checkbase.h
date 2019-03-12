@@ -80,6 +80,9 @@ public:
     ClazyPreprocessorCallbacks(const ClazyPreprocessorCallbacks &) = delete;
     explicit ClazyPreprocessorCallbacks(CheckBase *check);
 
+    void FileChanged(clang::SourceLocation Loc, FileChangeReason Reason,
+                     clang::SrcMgr::CharacteristicKind FileType,
+                     clang::FileID PrevFID = clang::FileID());
     void MacroExpands(const clang::Token &MacroNameTok, const clang::MacroDefinition &,
                       clang::SourceRange, const clang::MacroArgs *) override;
     void MacroDefined(const clang::Token &MacroNameTok, const clang::MacroDirective*) override;
@@ -142,6 +145,7 @@ public:
     virtual void VisitStmt(clang::Stmt *stm);
     virtual void VisitDecl(clang::Decl *decl);
 protected:
+    virtual void VisitFileChanged(clang::SourceLocation Loc, clang::PPCallbacks::FileChangeReason Reason, clang::SrcMgr::CharacteristicKind FileType, clang::FileID PrevFID);
     virtual void VisitMacroExpands(const clang::Token &macroNameTok, const clang::SourceRange &, const clang::MacroInfo *minfo = nullptr);
     virtual void VisitMacroDefined(const clang::Token &macroNameTok);
     virtual void VisitDefined(const clang::Token &macroNameTok, const clang::SourceRange &);
@@ -167,7 +171,7 @@ protected:
     const clang::SourceManager &sm() const { return m_sm; }
     const clang::LangOptions &lo() const { return m_astContext.getLangOpts(); }
 
-    const clang::SourceManager &m_sm;
+    clang::SourceManager &m_sm;
     const std::string m_name;
     const ClazyContext *const m_context;
     clang::ASTContext &m_astContext;

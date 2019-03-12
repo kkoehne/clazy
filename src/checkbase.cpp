@@ -58,6 +58,11 @@ ClazyPreprocessorCallbacks::ClazyPreprocessorCallbacks(CheckBase *check)
 {
 }
 
+void ClazyPreprocessorCallbacks::FileChanged(SourceLocation Loc, PPCallbacks::FileChangeReason Reason, SrcMgr::CharacteristicKind FileType, FileID PrevFID)
+{
+    check->VisitFileChanged(Loc, Reason, FileType, PrevFID);
+}
+
 void ClazyPreprocessorCallbacks::MacroExpands(const Token &macroNameTok, const MacroDefinition &md,
                                               SourceRange range, const MacroArgs *)
 {
@@ -125,6 +130,11 @@ void CheckBase::VisitStmt(Stmt *)
 }
 
 void CheckBase::VisitDecl(Decl *)
+{
+    // Overriden in derived classes
+}
+
+void CheckBase::VisitFileChanged(SourceLocation Loc, PPCallbacks::FileChangeReason Reason, SrcMgr::CharacteristicKind FileType, FileID PrevFID)
 {
     // Overriden in derived classes
 }

@@ -36,6 +36,7 @@
 #include "checks/manuallevel/qhash-with-char-pointer-key.h"
 #include "checks/manuallevel/qrequiredresult-candidates.h"
 #include "checks/manuallevel/qstring-varargs.h"
+#include "checks/manuallevel/qt-license-headers.h"
 #include "checks/manuallevel/qt-keywords.h"
 #include "checks/manuallevel/qt4-qstring-from-array.h"
 #include "checks/manuallevel/raw-environment-function.h"
@@ -126,6 +127,7 @@ void CheckManager::registerChecks()
     registerCheck(check<QHashWithCharPointerKey>("qhash-with-char-pointer-key", ManualCheckLevel,  RegisteredCheck::Option_VisitsDecls));
     registerCheck(check<QRequiredResultCandidates>("qrequiredresult-candidates", ManualCheckLevel,  RegisteredCheck::Option_VisitsDecls));
     registerCheck(check<QStringVarargs>("qstring-varargs", ManualCheckLevel,  RegisteredCheck::Option_VisitsStmts));
+    registerCheck(check<QtLicenseHeaders>("qt-license-headers", ManualCheckLevel, RegisteredCheck::Option_None));
     registerCheck(check<QtKeywords>("qt-keywords", ManualCheckLevel, RegisteredCheck::Option_None));
     registerFixIt(1, "fix-qt-keywords", "qt-keywords");
     registerCheck(check<Qt4QStringFromArray>("qt4-qstring-from-array", ManualCheckLevel,  RegisteredCheck::Option_VisitsStmts));

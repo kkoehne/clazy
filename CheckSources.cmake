@@ -9,6 +9,7 @@ set(CLAZY_CHECKS_SRCS ${CLAZY_CHECKS_SRCS}
   ${CMAKE_CURRENT_LIST_DIR}/src/checks/manuallevel/qrequiredresult-candidates.cpp
   ${CMAKE_CURRENT_LIST_DIR}/src/checks/manuallevel/qstring-varargs.cpp
   ${CMAKE_CURRENT_LIST_DIR}/src/checks/manuallevel/qt-keywords.cpp
+  ${CMAKE_CURRENT_LIST_DIR}/src/checks/manuallevel/qt-license-headers.cpp
   ${CMAKE_CURRENT_LIST_DIR}/src/checks/manuallevel/qt4-qstring-from-array.cpp
   ${CMAKE_CURRENT_LIST_DIR}/src/checks/manuallevel/raw-environment-function.cpp
   ${CMAKE_CURRENT_LIST_DIR}/src/checks/manuallevel/reserve-candidates.cpp
